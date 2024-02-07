@@ -1,5 +1,6 @@
 from flask import Flask,request
-#from Librerie.utente import CercaUtente
+
+import mysql.connector
 
 ecommerce = Flask(__name__)
 
@@ -26,6 +27,22 @@ def DoLogin():
         #u = CercaUtente(UserName, pwd)
         u = None #in realtà dovrebbe fare la ricerca
 
+        host = 'python.hostingstudenti.fortechance.com'
+        db = 'c3db'
+        user = 'c3python'
+        passwd = 'ThePythonCourse098'
+
+        conn = mysql.connector.connect(
+            host = host,
+            user = user,
+            password = passwd,
+            database = db)
+
+        richiesta = f'SELECT * FROM UTENTI Where USERNAME = "{UserName}" AND PASSWORD = "{pwd}"'
+
+        cur = conn.cursor(richiesta)
+        u = cur.fetchone()
+        
         if u == None:
             #Utente non trovato
             pass
