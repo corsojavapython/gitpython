@@ -1,0 +1,18 @@
+API Name:   /test
+Scopo:      Provare le chiamate con funzione di echo
+Parametri:  tutto quello che voglio
+Risposta:   tutto quello che gli mando
+Verbo:      qualsiasi: GET, PUT, POST, DELETE
+
+----------------------------------------------------------
+API Name:   /autenticazione
+Scopo:      Esegue il login di un utente
+Parametri:  JSON: utente, password
+Esempio:    {"utente":"useruno", "password": "passworduser1"}
+Risposta:   JSON con tutti i dati utente + loginstatus che 
+            può essere OK oppure FAIL
+Esempio:    {"NOME":"Enrico", "COGNOME","Terzolo", ... ...
+            "loginstatus":"OK"}
+Verbo:      POST
+
+-----------------------------------------------------------
