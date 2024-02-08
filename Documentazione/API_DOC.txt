@@ -16,3 +16,14 @@ Esempio:    {"NOME":"Enrico", "COGNOME","Terzolo", ... ...
 Verbo:      POST
 
 -----------------------------------------------------------
+APi Name:   /init
+Scopo:      inizializzare il database
+Parametri:  JSON: File da leggere (filename), parametri del database
+            a cui connetterci (host, database, username, password)
+Esempio:    {"filename":"classe.json","dbhost":"python.hostingstudenti.fortechance.com",
+            "dbname":"c3db", "dbuser":"c3python", "dbpassw":"ThePythonCourse098"}
+Risposta:   Status dell'operazione in formto JSON (OK o FAIL)
+Esempio:    {"init":"OK"}
+Verbo:      PUT
+
+------------------------------------------------------------
