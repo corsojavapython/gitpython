@@ -10,13 +10,13 @@ def init():
 
     #leggere i parametri JSON,
     #da cui beccare il nome del file e i dati di connessione
-    try:
+    #try:
 
         dati = request.json
 
         filename = dati['filename']
         host = dati['host']
-        database = dati['database']
+        dbase = dati['database']
         username = dati['username']
         password = dati['password']
 
@@ -24,38 +24,28 @@ def init():
         codice = 200
 
         #devo connettermi al DB
-        connessione = database.connetti(
 
-            host = host,
-            database = database,
-            username = username,
-            password = password
+        db = database()
+
+        db.connetti(
+
+            host,
+            dbase,
+            username,
+            password
 
         )
 
-
-        richiesta = f"""SELECT * FROM UTENTI Where 
-                        USERNAME = "{UserName}" AND 
-                        PASSWORD = "{pwd}" """
-
-        cur = conn.cursor(richiesta)
-        u = cur.fetchone()
-        
-        if u == None:
-            #Utente non trovato
-            pass
-        else:
-            #Utente trovato
-            pass
+        connessione = db.Con
 
         resp = '' # poi la implementiamo       
 
-    except:
+    #except:
 
         ritorno = 'hai fatto puttanate con i dati, e moo sono cazzi'
         codice = 500
 
-
+        return ritorno, codice
 
 @ecommerce.route('/test', methods = ['POST', 'GET', 'PUT', 'DELETE'])
 def test():

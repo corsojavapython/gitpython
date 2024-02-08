@@ -3,7 +3,9 @@ import mysql.connector
 class database:
 
     def __init__(self):
-        pass
+        
+        self.Con = None
+        self.Cur = None
 
     def connetti(self, hostname, dbname, username, password):
 
@@ -29,12 +31,16 @@ class database:
 
             self.Con = None
 
+        #return self.Con
+
     def cursore(self,istruzione):
 
         if self.Con:
             self.Cur = self.Con.cursor(istruzione)
         else:
             self.Cur = None
+
+        #return self.Cur
 
     def BeginTransaction(self):
 
