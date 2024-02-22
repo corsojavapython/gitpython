@@ -1,10 +1,9 @@
-from cDataBase import database
 
 class utente:
     def __init__(self):
         pass
 
-    def insert(self, 
+    def create (self, 
                codice, nome, cognome, username, 
                password, eta, sesso, cfiscale, 
                nazionalita, indirizzo):
@@ -20,3 +19,9 @@ class utente:
         self.CFiscale = cfiscale
         self.Nazionalita = nazionalita
         self.Indirizzo = indirizzo
+
+
+    def insert(self):
+        print('devo fare la insert di ' + self.Codice)
+        pass
+
