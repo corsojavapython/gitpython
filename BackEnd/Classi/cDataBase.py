@@ -27,8 +27,9 @@ class database:
 
             self.Con = conn
 
-        except:
+        except Exception as e:
 
+            print (e)
             self.Con = None
 
         #return self.Con

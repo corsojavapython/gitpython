@@ -5,6 +5,9 @@ from Classi.cUtenti import utente
 
 import json
 
+import os
+
+
 ecommerce = Flask(__name__)
 
 @ecommerce.route('/init', methods = ['PUT'])
@@ -28,13 +31,12 @@ def init():
         # devo leggere il file di dati
 
         try:
-             
+
             with (open(filename,'r',encoding='utf-8')) as fr:
                 datiJson = fr.read()
-
                 dizDati = json.loads(datiJson)
 
-        except:
+        except Exception as e:
 
             ritorno = 'Il nome del file dati è errato'
             codice = 500
@@ -69,9 +71,9 @@ def init():
             #prima di tutto voglio creare una istanza della classe Utente
             #per ogni utente presente nel dizionario
 
-            utenteDaCreare = utente
+            utenteDaCreare = utente()
 
-            utente.create(chiave,
+            utenteDaCreare.create(chiave,
                           datiDiz['nome'],
                           datiDiz['cognome'],
                           datiDiz['username'],
@@ -82,7 +84,13 @@ def init():
                           datiDiz['nazionalita'],
                           datiDiz['indirizzo'])
 
-            utente.insert()
+
+            #if not utenteDaCreare.exists(connessione):
+            utenteDaCreare.insert(connessione)
+
+            ritorno = 'Dati inizializzato con successo'
+            codice = 200
+
 
         return ritorno, codice
 
