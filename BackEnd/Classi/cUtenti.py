@@ -22,8 +22,6 @@ class utente:
 
     def CercaUtente(self, u, p, con):
 
-        print (u,p)
-
         if con:
             #cerco l'utente
         
@@ -35,12 +33,22 @@ class utente:
             """
             cur.execute(SQL,(u,p))
             risultato = cur.fetchone()
+            if risultato:
+                
+                # trascormare la tupla 'risultato' in un insieme di variabili
+                #esempiio : t = (3,5,7)
+                #spacchettato -> var1, var2, var 3 = t
+
+                #chiamare il metodo create della classe passando i giusti parametri
+                pass
+            else:
+
+                #dfadasdfadsf
+                #chiamate create con username e password cercati e status = logout
+                pass
+
             print(risultato)
             return risultato
-
-
-
-
 
         else:
             return "database non connesso"
