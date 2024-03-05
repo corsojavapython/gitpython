@@ -130,8 +130,9 @@ def DoLogin():
         #utente assente
         pass
 
+    listRet = list(ret)
 
-    return ret + " " + ritorno, codice
+    return listRet ,codice
 
 if (__name__) == '__main__':
     ecommerce.run(host='0.0.0.0',port = 80)

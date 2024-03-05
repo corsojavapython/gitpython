@@ -25,10 +25,29 @@ class utente:
         print (u,p)
 
         if con:
-            return "DAtabase connesso" 
+            #cerco l'utente
+        
+            cur = con.cursor()
+            SQL = """
+                SELECT * FROM UTENTI where 
+                    USERNAME = %s and
+                    PASSWORD = %s
+            """
+            cur.execute(SQL,(u,p))
+            risultato = cur.fetchone()
+            print(risultato)
+            return risultato
+
+
+
+
+
         else:
             return "database non connesso"
         
+
+
+
     def exists(self, conn):
 
         SQL = "SELECT * FROM UTENTI WHERE CODICE = %s"
