@@ -20,6 +20,15 @@ class utente:
         self.Nazionalita = nazionalita
         self.Indirizzo = indirizzo
 
+    def CercaUtente(self, u, p, con):
+
+        print (u,p)
+
+        if con:
+            return "DAtabase connesso" 
+        else:
+            return "database non connesso"
+        
     def exists(self, conn):
 
         SQL = "SELECT * FROM UTENTI WHERE CODICE = %s"
