@@ -126,9 +126,6 @@ def DoLogin():
     ret = u.CercaUtente(UserName, pwd, db.Con)
     
     db.RollbackTransaction()
-
-
-    #u = None #in realtà dovrebbe fare la ricerca
     
     if u.Status == 'OK':
         #utente  trovato
