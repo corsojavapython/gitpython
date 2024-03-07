@@ -73,7 +73,7 @@ def init():
 
             utenteDaCreare = utente()
 
-            utenteDaCreare.create(chiave,
+            utenteDaCreare.create(chiave,'logout',
                           datiDiz['nome'],
                           datiDiz['cognome'],
                           datiDiz['username'],
@@ -123,11 +123,13 @@ def DoLogin():
     ret = u.CercaUtente(UserName, pwd, db.Con)
     #u = None #in realtà dovrebbe fare la ricerca
     
-    if u:
-        #utente trovato
+    if u.Status == 'login':
+        #utente  trovato
+        print('ciao '+ u.Nome+' '+ u.Cognome)
         pass
     else:
         #utente assente
+        print('login fallito per ' + u.UserName+','+u.Password)
         pass
 
     listRet = list(ret)
