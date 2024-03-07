@@ -3,6 +3,24 @@ class utente:
     def __init__(self):
         pass
 
+    def dizUtente(self):
+
+        diz = {}
+
+        diz['LoginStatus'] = self.Status
+        diz['Codice'] = self.Codice
+        diz['Nome'] = self.Nome
+        diz['Cognome'] = self.Cognome
+        diz['Username'] = self.UserName
+        diz['Password'] = self.Password
+        diz['Eta'] = self.Eta
+        diz['Sesso'] = self.Sesso
+        diz['CodiceFiscale'] = self.CFiscale
+        diz['Nazionalita'] = self.Nazionalita
+        diz['Indirizzo'] = self.Indirizzo
+
+        return diz
+
     def create (self, status,
                codice, nome, cognome, username, 
                password, eta, sesso, cfiscale, 
@@ -44,7 +62,7 @@ class utente:
                 #chiamare il metodo create della classe passando i giusti parametri
 
                 self.create(
-                    'login',
+                    'OK',
                     codice,
                     nome,
                     cognome,
@@ -58,7 +76,7 @@ class utente:
                 
             else:
                 self.create(
-                    'logout',
+                    'FAIL',
                     '',
                     '',
                     '',

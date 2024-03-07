@@ -1,4 +1,4 @@
-from flask import Flask,request
+from flask import Flask,request, jsonify
 
 from Classi.cDataBase import database
 from Classi.cUtenti import utente
@@ -73,7 +73,7 @@ def init():
 
             utenteDaCreare = utente()
             ###
-            utenteDaCreare.create('logout', chiave,
+            utenteDaCreare.create('FAIL', chiave,
                           datiDiz['nome'],
                           datiDiz['cognome'],
                           datiDiz['username'],
@@ -120,10 +120,17 @@ def DoLogin():
         codice = 500
 
     u = utente()
+    
+    db.BeginTransaction()
+    
     ret = u.CercaUtente(UserName, pwd, db.Con)
+    
+    db.RollbackTransaction()
+
+
     #u = None #in realtà dovrebbe fare la ricerca
     
-    if u.Status == 'login':
+    if u.Status == 'OK':
         #utente  trovato
         print('ciao '+ u.Nome+' '+ u.Cognome)
         pass
@@ -131,10 +138,9 @@ def DoLogin():
         #utente assente
         print('login fallito per ' + u.UserName+','+u.Password)
         pass
-
-    listRet = list(ret)
-
-    return listRet ,codice
+        
+    ret = jsonify(u.dizUtente())
+    return ret, codice
 
 if (__name__) == '__main__':
     ecommerce.run(host='0.0.0.0',port = 80)
