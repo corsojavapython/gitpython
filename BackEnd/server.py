@@ -72,8 +72,8 @@ def init():
             #per ogni utente presente nel dizionario
 
             utenteDaCreare = utente()
-
-            utenteDaCreare.create(chiave,'logout',
+            ###
+            utenteDaCreare.create('logout', chiave,
                           datiDiz['nome'],
                           datiDiz['cognome'],
                           datiDiz['username'],
