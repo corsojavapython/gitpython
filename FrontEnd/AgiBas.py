@@ -38,10 +38,24 @@ while True:
         dati['password'] = p
 
         risposta = requests.post('http://192.168.10.35/autenticazione', json = dati)
+        
         print(risposta.status_code)
         print(risposta.text)
 
+        msg = risposta.text
 
-        break
+        if (risposta.status_code) == 200:
+            #faccio vedere i dati
+            pass
+
+            #voglio una finestra PopUp
+            sg.popup_ok_cancel(msg)
+            
+        else:
+            #faccio vedere il codice di ritorno
+            # e nessun dato.
+            pass
+
+        
 
 

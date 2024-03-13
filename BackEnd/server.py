@@ -121,21 +121,25 @@ def DoLogin():
 
     u = utente()
     
-    db.BeginTransaction()
+    if (not db.Con.in_transaction):
+        db.BeginTransaction()
     
     ret = u.CercaUtente(UserName, pwd, db.Con)
     
-    db.RollbackTransaction()
+    if (db.Con.in_transaction):
+        db.RollbackTransaction()
     
     if u.Status == 'OK':
         #utente  trovato
         print('ciao '+ u.Nome+' '+ u.Cognome)
+        codice = 200
         pass
     else:
         #utente assente
         print('login fallito per ' + u.UserName+','+u.Password)
+        codice = 404
         pass
-        
+
     ret = jsonify(u.dizUtente())
     return ret, codice
 
