@@ -61,7 +61,7 @@ while True:
                 [sg.Text('tu abiti a: '), sg.Text(datiRisposta['Indirizzo'])],
                 [sg.Text('ed hai: '), sg.Text(datiRisposta['Eta']),sg.Text(' anni')],
                 [sg.Text('e sei di nazionalità: '), sg.Text(datiRisposta['Nazionalita'])],
-                [sg.Button('OK',pad=(150,10))]
+                [sg.Button('OK')]
 
             ]
 
