@@ -26,7 +26,7 @@ while True:
     elif ev == 'OK':
         u = va['user']
         p = va['pwd']
-
+        
         print (f'Sto facendo il login per {u} , {p}')
 
         #ora devo chiamare la API auenticazione del BackEnd
@@ -55,12 +55,17 @@ while True:
         
             layoutRisposta = [
 
-                [sg.Text('Benvenuto ')],    
-                [sg.Text('Nome: '),sg.Text(datiRisposta['Nome'])],
-                [sg.Text('Cognome: '),sg.Text(datiRisposta['Cognome'])]
+                [sg.Text('Benvenuto '),sg.Text(datiRisposta['Nome'])
+                 ,sg.Text(datiRisposta['Cognome'])],    
+                [sg.Text('il tuo codice fiscale è: '), sg.Text(datiRisposta['CodiceFiscale'])],
+                [sg.Text('tu abiti a: '), sg.Text(datiRisposta['Indirizzo'])],
+                [sg.Text('ed hai: '), sg.Text(datiRisposta['Eta']),sg.Text(' anni')],
+                [sg.Text('e sei di nazionalità: '), sg.Text(datiRisposta['Nazionalita'])],
+                [sg.Button('OK',pad=(150,10))]
+
             ]
 
-            w2 = sg.Window('Login Eseguito', layoutRisposta)
+            w2 = sg.Window('Login Eseguito', layoutRisposta, return_keyboard_events = ev2)
             
             while True:
 
@@ -68,6 +73,10 @@ while True:
 
                 if ev2 == sg.WIN_CLOSED:
                     break
+
+                
+                elif ev2 == 'OK':
+                    w2.close()
 
 
         else:
