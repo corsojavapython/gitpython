@@ -55,6 +55,16 @@ while True:
         
             layoutRisposta = [
 
+<<<<<<< .mine
+                [sg.Text('Benvenuto '),sg.Text(datiRisposta['Nome']),sg.Text(datiRisposta['Cognome'])],    
+                [sg.Text('il tuo codice fiscale è: '),sg.Text(datiRisposta['CodiceFiscale'])],
+                [sg.Text('tu abiti: '),sg.Text(datiRisposta['Indirizzo'])],
+                [sg.Text('e hai: '),sg.Text(datiRisposta['Eta']),sg.Text('anni')],
+                [sg.Text('e sei: '),sg.Text(datiRisposta['Nazionalita'])],
+                [sg.Button('OK')]
+
+
+=======
                 [sg.Text('Benvenuto '),sg.Text(datiRisposta['Nome'])
                  ,sg.Text(datiRisposta['Cognome'])],    
                 [sg.Text('il tuo codice fiscale è: '), sg.Text(datiRisposta['CodiceFiscale'])],
@@ -63,6 +73,7 @@ while True:
                 [sg.Text('e sei di nazionalità: '), sg.Text(datiRisposta['Nazionalita'])],
                 [sg.Button('OK')]
 
+>>>>>>> .theirs
             ]
 
             w2 = sg.Window('Login Eseguito', layoutRisposta)
@@ -74,9 +85,15 @@ while True:
                 if ev2 == sg.WIN_CLOSED:
                     break
 
+<<<<<<< .mine
+                elif ev2 == 'OK':
+                    break
+
+=======
                 
                 elif ev2 == 'OK':
                     w2.close()
+>>>>>>> .theirs
 
 
         else:
