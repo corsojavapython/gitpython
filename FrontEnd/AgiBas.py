@@ -38,7 +38,7 @@ while True:
         dati['utente'] = u 
         dati['password'] = p
 
-        risposta = requests.post('http://192.168.10.235/autenticazione', json = dati)
+        risposta = requests.post('http://196.168.10.235/autenticazione', json = dati)
         
         print(risposta.status_code)
         print(risposta.text)

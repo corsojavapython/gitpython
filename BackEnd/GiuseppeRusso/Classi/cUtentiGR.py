@@ -88,9 +88,6 @@ class utente:
                     '',
                     '')
                 
-                #chiamate create con username e password cercati e status = logout
-
-            #print(risultato)
             return risultato
 
         else:
