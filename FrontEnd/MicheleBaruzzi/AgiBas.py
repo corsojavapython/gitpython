@@ -64,6 +64,7 @@ while True:
                 [sg.Text('tu abiti: '),sg.Text(datiRisposta['Indirizzo'])],
                 [sg.Text('e hai: '),sg.Text(datiRisposta['Eta']),sg.Text('anni')],
                 [sg.Text('e sei: '),sg.Text(datiRisposta['Nazionalita'])],
+                [sg.Text('e sei: '),sg.Text(datiRisposta['Sesso'])],
                 [sg.Button('OK')]
             ]
 
