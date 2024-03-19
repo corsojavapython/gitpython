@@ -2,7 +2,7 @@ from Finestre.Login import login
 import requests
 
 dati = {}
-dati['filename'] = './/Dati//classe.json'
+dati['filename'] = 'C:\\Users\\Utente\\Desktop\\Python\\gitpython\\Dati\\classe.json'
 dati['host'] = 'python.hostingstudenti.fortechance.com'
 dati['database'] = 'c3db'
 dati['username'] = 'c3python'
