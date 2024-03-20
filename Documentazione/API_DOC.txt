@@ -27,3 +27,23 @@ Esempio:    {"init":"OK"}
 Verbo:      PUT
 
 ------------------------------------------------------------
+API Name:   /registrati
+Scopo:      Registrate un nuovo utente nel DB considerando come status di
+            login = FAIL
+Parametri:  JSON: Tutti i dati di registrazione:
+                Nome, S(25)
+                Cognome, S(25)
+                Username, S(>8)
+                Password, S(>8)
+                Eta, N (I)
+                Sesso, S(1!)
+                CFiscale, S(16!)
+                Nazionalità, S(3!)
+                Indirizzo
+Esempio:    {"Nome":"Enrico", "Cognome":"Terzolo",... ... .. }
+Risposta:   Chiave univoca del nuovo utente in formato JSON con User e password
+            oppure il codice di errore per operazione non riuscita ed un messaggio
+Esempio:    {"Codice":"3ed2134a-3432-34244242- EFFF" "Username":"ppp", "Password":"rrr",
+            "Messaggio":"OK" se tutto è a posto,| "FAIL" se errore in registrazione}
+Verbo:      PUT
+
