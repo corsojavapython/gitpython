@@ -38,7 +38,7 @@ while True:
         dati['utente'] = u 
         dati['password'] = p
 
-        risposta = requests.post('http://192.168.10.235/autenticazione', json = dati)
+        risposta = requests.post('http://192.168.10.46:80/autenticazione', json = dati)
         
         print(risposta.status_code)
         print(risposta.text)
@@ -57,10 +57,10 @@ while True:
 
                 [sg.Text('Benvenuto '),sg.Text(datiRisposta['Nome'])
                  ,sg.Text(datiRisposta['Cognome'])],    
-                [sg.Text('il tuo codice fiscale è: '), sg.Text(datiRisposta['CodiceFiscale'])],
-                [sg.Text('tu abiti a: '), sg.Text(datiRisposta['Indirizzo'])],
-                [sg.Text('ed hai: '), sg.Text(datiRisposta['Eta']),sg.Text(' anni')],
-                [sg.Text('e sei di nazionalità: '), sg.Text(datiRisposta['Nazionalita'])],
+                [sg.Text('Il tuo codice fiscale è: '), sg.Text(datiRisposta['CodiceFiscale'])],
+                [sg.Text('Tu abiti a: '), sg.Text(datiRisposta['Indirizzo'])],
+                [sg.Text('Hai: '), sg.Text(datiRisposta['Eta']),sg.Text(' anni')],
+                [sg.Text('Sei di nazionalità: '), sg.Text(datiRisposta['Nazionalita'])],
                 [sg.Button('OK')]
 
             ]
