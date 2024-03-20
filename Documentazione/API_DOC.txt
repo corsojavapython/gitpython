@@ -1,4 +1,5 @@
 API Name:   /test
+VERSIONE:   1.0
 Scopo:      Provare le chiamate con funzione di echo
 Parametri:  tutto quello che voglio
 Risposta:   tutto quello che gli mando
@@ -6,6 +7,7 @@ Verbo:      qualsiasi: GET, PUT, POST, DELETE
 
 ----------------------------------------------------------
 API Name:   /autenticazione
+VERSIONE:   1.0
 Scopo:      Esegue il login di un utente
 Parametri:  JSON: utente, password
 Esempio:    {"utente":"useruno", "password": "passworduser1"}
@@ -17,9 +19,9 @@ Verbo:      POST
 
 -----------------------------------------------------------
 APi Name:   /init
-Scopo:      inizializzare il database
-Parametri:  JSON: File da leggere (filename), parametri del database
-            a cui connetterci (host, database, username, password)
+VERSIONE    2.0 (Enrico Terzolo)
+Scopo:      inizializzare i l database
+Parametri:  JSON: nessuno, leggi un file di configurazione (congif.json)
 Esempio:    {"filename":"classe.json","dbhost":"python.hostingstudenti.fortechance.com",
             "dbname":"c3db", "dbuser":"c3python", "dbpassw":"ThePythonCourse098"}
 Risposta:   Status dell'operazione in formto JSON (OK o FAIL)
@@ -27,3 +29,23 @@ Esempio:    {"init":"OK"}
 Verbo:      PUT
 
 ------------------------------------------------------------
+API Name:   /registrati
+VERSIONE    1.0
+Scopo:      RegistraRre un nuovo utente nel DB consinsiderandolo come status di
+            login = FAIL
+Parametri:  JSON: Tutti i dati di registrazione:
+                Nome, S(25)
+                Cognome, S(25)
+                Username, S(>8)
+                Password, S(>8)
+                Eta, N (I)
+                Sesso, S (1!)
+                CFiscale, S (16!)
+                Nazionalità, S(3!)
+                Indirizzo
+Esempio:    {"Nome":"Enrico", "Cognome":"Terzolo",... ... ... }
+Risposta:   Chieve univoca del nuovo utente in formato JSONcon uder e password
+            oppure il codice di errore per operazione non riuscita ed un messaggio
+Esempio:    {"Codice":"3ed2134a-3432-34244242-EFFF", "Username":"ppp", "Password":"rrr", 
+            "Messaggio": "OK" se tutto è a posto, | "FAIL" se errore in regisrazione}
+Verbo:      PUT

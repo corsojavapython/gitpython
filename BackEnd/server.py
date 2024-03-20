@@ -19,7 +19,11 @@ def init():
     #da cui beccare il nome del file e i dati di connessione
     #try:
 
-        dati = request.json
+    #Leggo il file di configurazione BackEnd.Config
+        with open("BackEnd.Config",'r') as cfg:
+            config = cfg.read()
+
+        dati = json.loads(config)
 
         filename = dati['filename']
         host = dati['host']

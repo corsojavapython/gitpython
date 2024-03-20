@@ -3,104 +3,19 @@
 import PySimpleGUI as sg
 from flask import jsonify
 import json
+from Classi.cFrontEnd import cLogin
 
 import requests
 
-layout = [
+l = cLogin('192.168.10.35')
 
-    [sg.Text('Username'), sg.Input(key = 'user')],
-    [sg.Text('Password'), sg.Input(key = 'pwd', password_char= '*')],
-    [sg.Button('Annulla'), sg.Button('OK')]
+if l.EseguiLogin():
+    #Login Eseguito
+    #Faccio Vedere i dati
+    l.ShowLoginData()
 
-]
-
-w = sg.Window('Applicazione', layout)
-
-while True:
-
-    ev, va = w.Read()
-
-    if ev == 'Annulla' or ev == sg.WIN_CLOSED:
-        break
-
-    elif ev == 'OK':
-        u = va['user']
-        p = va['pwd']
-        
-        print (f'Sto facendo il login per {u} , {p}')
-
-        #ora devo chiamare la API auenticazione del BackEnd
-        #ho bisogno di un dizionario che contenga:
-        # utente, password
-        #poi dev jonificarlo e mandarlo al backend
-
-        dati = {}
-        dati['utente'] = u 
-        dati['password'] = p
-
-        risposta = requests.post('http://196.168.10.235/autenticazione', json = dati)
-        
-        print(risposta.status_code)
-        print(risposta.text)
-
-        msg = risposta.text
-
-        datiRisposta = json.loads(msg)
-
-        if (risposta.status_code) == 200:
-            #faccio vedere i dati
-            pass
-
-            #voglio una finestra PopUp
-        
-            layoutRisposta = [
-
-<<<<<<< .mine
-                [sg.Text('Benvenuto '),sg.Text(datiRisposta['Nome']),sg.Text(datiRisposta['Cognome'])],    
-                [sg.Text('il tuo codice fiscale è: '),sg.Text(datiRisposta['CodiceFiscale'])],
-                [sg.Text('tu abiti: '),sg.Text(datiRisposta['Indirizzo'])],
-                [sg.Text('e hai: '),sg.Text(datiRisposta['Eta']),sg.Text('anni')],
-                [sg.Text('e sei: '),sg.Text(datiRisposta['Nazionalita'])],
-                [sg.Button('OK')]
-
-
-=======
-                [sg.Text('Benvenuto '),sg.Text(datiRisposta['Nome'])
-                 ,sg.Text(datiRisposta['Cognome'])],    
-                [sg.Text('il tuo codice fiscale è: '), sg.Text(datiRisposta['CodiceFiscale'])],
-                [sg.Text('tu abiti a: '), sg.Text(datiRisposta['Indirizzo'])],
-                [sg.Text('ed hai: '), sg.Text(datiRisposta['Eta']),sg.Text(' anni')],
-                [sg.Text('e sei di nazionalità: '), sg.Text(datiRisposta['Nazionalita'])],
-                [sg.Button('OK')]
-
->>>>>>> .theirs
-            ]
-
-            w2 = sg.Window('Login Eseguito', layoutRisposta)
-            
-            while True:
-
-                ev2, va2 = w2.Read()
-
-                if ev2 == sg.WIN_CLOSED:
-                    break
-
-<<<<<<< .mine
-                elif ev2 == 'OK':
-                    break
-
-=======
-                
-                elif ev2 == 'OK':
-                    w2.close()
->>>>>>> .theirs
-
-
-        else:
-            #faccio vedere il codice di ritorno
-            # e nessun dato.
-            pass
-
-        
+else:
+    #login non effettuato, fine dell'applicazione
+    pass
 
 
