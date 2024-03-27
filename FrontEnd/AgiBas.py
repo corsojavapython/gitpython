@@ -15,7 +15,9 @@ if l.EseguiLogin():
     l.ShowLoginData()
 
 else:
-    #login non effettuato, fine dell'applicazione
-    pass
-
+    #login non effettuato, verifico cosa vale NeedRegister
+    if l.NeedRegister:
+        #devo registrarmi
+        print('DEVO REGISTRARMI')
+        pass
 

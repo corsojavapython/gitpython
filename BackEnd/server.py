@@ -82,8 +82,11 @@ def init():
     #Leggo il file di configurazione BackEnd.Config
         try:
 
-            fname = os.path.abspath('BackEnd\\BackEnd.Config')
+            fname = os.path.abspath('BackEnd.Config')
 
+            print(f'leggo {fname}')
+
+            print(fname)
 
             with open(fname,'r') as cfg:
                 config = cfg.read()
@@ -107,6 +110,8 @@ def init():
         try:
 
             fname = os.path.abspath(filename)
+
+            print(f'leggo {fname}')
 
             with (open(fname,'r',encoding='utf-8')) as fr:
                 datiJson = fr.read()
@@ -218,5 +223,8 @@ def DoLogin():
     return ret, codice
 
 if (__name__) == '__main__':
+
+    print(init())
+
     ecommerce.run(host='0.0.0.0',port = 80)
 

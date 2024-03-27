@@ -9,6 +9,7 @@ class cLogin():
         
         self.BackEnd = backend
         self.LoginData = {}
+        self.NeedRegister = False
 
     def Init(self):
 
@@ -41,7 +42,7 @@ class cLogin():
 
         [sg.Text('Username'), sg.Input(key = 'user')],
         [sg.Text('Password'), sg.Input(key = 'pwd', password_char= '*')],
-        [sg.Button('Annulla'), sg.Button('OK')]
+        [sg.Button('Annulla'), sg.Button('OK'), sg.Button('Registrati')]
 
         ]
 
@@ -52,6 +53,11 @@ class cLogin():
             ev, va = w.Read()
         
             if ev == 'Annulla' or ev == sg.WIN_CLOSED:
+                break
+
+            elif ev == 'Registrati':
+                self.NeedRegister = True
+                ritorno = False
                 break
 
             elif ev == 'OK':
