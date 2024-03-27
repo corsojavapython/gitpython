@@ -6,6 +6,7 @@ class cLogin():
 
     def __init__(self, backend):
         
+        
         self.BackEnd = backend
         self.LoginData = {}
 
