@@ -4,13 +4,73 @@ from Classi.cDataBase import database
 from Classi.cUtenti import utente
 
 import json
-
+import uuid
 import os
 
 
 ecommerce = Flask(__name__)
 
 db = database()
+
+@ecommerce.route('/registrazione' , methods = ['PUT'])
+def register():
+
+    #recupero i dati dalla request
+    retCode = 200
+
+    try:
+        dati = request.json
+
+        Nome = dati['nome']
+        Cognome = dati['cognome']
+        Utente = dati['utente']
+        Password = dati['password']
+        Eta = dati['eta']
+        Sesso = dati['sesso']
+        CFiscale = dati['cfiscale']
+        Nazionalita = dati['nazionalita']
+        Indirizzo = dati['indirizzo']
+    
+        print(f'sto registrando {Cognome} {Nome}')
+
+        #Mi serve una chiave primaria.
+        chiave = str(uuid.uuid4())
+
+        print(f'la chiave assegnata è {chiave}')
+
+        #devo creare un utente di classe Utente e poi scrivere
+        # i dati nel database
+    
+        u = utente()
+        u.create('FAIL',
+                 chiave,
+                 Nome,
+                 Cognome,
+                 Utente,
+                 Password,
+                 Eta,
+                 Sesso,
+                 CFiscale,
+                 Nazionalita,
+                 Indirizzo)
+
+        u.insert(db.Con)
+
+    except Exception as e:
+
+        print(e.__repr__())
+
+        retCode = 500
+        chiave = 'null'
+
+    finally:
+
+        return chiave, retCode
+
+
+
+
+
 
 @ecommerce.route('/init', methods = ['PUT'])
 def init():
@@ -20,16 +80,24 @@ def init():
     #try:
 
     #Leggo il file di configurazione BackEnd.Config
-        with open("BackEnd.Config",'r') as cfg:
-            config = cfg.read()
+        try:
 
-        dati = json.loads(config)
+            fname = os.path.abspath('BackEnd\\BackEnd.Config')
 
-        filename = dati['filename']
-        host = dati['host']
-        dbase = dati['database']
-        username = dati['username']
-        password = dati['password']
+
+            with open(fname,'r') as cfg:
+                config = cfg.read()
+
+            dati = json.loads(config)
+
+            filename = dati['filename']
+            host = dati['host']
+            dbase = dati['database']
+            username = dati['username']
+            password = dati['password']
+
+        except Exception as e:
+            print(e.__repr__())
 
         ritorno = 'i dati sono ok'
         codice = 200
@@ -38,7 +106,9 @@ def init():
 
         try:
 
-            with (open(filename,'r',encoding='utf-8')) as fr:
+            fname = os.path.abspath(filename)
+
+            with (open(fname,'r',encoding='utf-8')) as fr:
                 datiJson = fr.read()
                 dizDati = json.loads(datiJson)
 
