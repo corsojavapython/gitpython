@@ -3,11 +3,12 @@
 import PySimpleGUI as sg
 from flask import jsonify
 import json
-from Classi.cFrontEnd import cLogin
+from Classi.cFrontEndMichele import cLogin, cRegistrazione
 
 import requests
 
 l = cLogin('192.168.10.35')
+r = cRegistrazione()
 
 if l.EseguiLogin():
     #Login Eseguito
@@ -15,7 +16,7 @@ if l.EseguiLogin():
     l.ShowLoginData()
 
 else:
-    #login non effettuato, fine dell'applicazione
+    
     pass
 
 
