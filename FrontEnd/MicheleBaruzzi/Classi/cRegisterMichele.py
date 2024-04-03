@@ -98,3 +98,7 @@ class cRegistrazione():
                 break
 
         window.close()
+
+
+        #modifico file
+        
