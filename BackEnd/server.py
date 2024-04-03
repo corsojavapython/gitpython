@@ -82,7 +82,7 @@ def init():
     #Leggo il file di configurazione BackEnd.Config
         try:
 
-            fname = os.path.abspath('BackEnd.Config')
+            fname = os.path.abspath('.\\BackEnd\\BackEnd.Config')
 
             print(f'leggo {fname}')
 
