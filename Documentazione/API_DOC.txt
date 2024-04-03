@@ -49,3 +49,128 @@ Risposta:   Chiave univoca del nuovo utente in formato JSON con user e password
 Esempio:    {"codice":"3ed2134a-3432-34244242-EFFF", "utente":"ppp", "password":"rrr", 
             "messaggio": "OK" se tutto è a posto, | "FAIL" se errore in regisrazione}
 Verbo:      PUT
+------------------------------------------------------------
+
+API Name:   /prodotto/nuovo
+VERSIONE:   1.0
+Scopo:      Registrare un nuovo prodotto nel catalogo
+Parametri:  JSON: Dati del prodotto:
+                nome, S(50)
+                descrizione, S(255)
+                prezzo, N(6,2)
+                marca, S(50)
+                categoria, S(50)
+                disponibilita, B  (true o false)
+Esempio:    {"nome":"Televisione Samsung", "descrizione": "Televisione da 32 pollici",... ... ...}
+Risposta:   Chiave univoca del nuovo prodotto in formato JSON con nome e descrizione
+            oppure il codice di errore per operazione non riuscita ed un messaggio
+Esempio:    {"codice":"3ed2134a-3432-34244242-EFFF", "nome":"Televisione", "descrizione":"Samsung 32 pollici", 
+            "messaggio": "OK" se tutto è a posto, | "FAIL" se errore in regisrazione}
+Verbo:      POST
+
+------------------------------------------------------------
+
+API Name:   /prodotto/lista
+VERSIONE:   1.0
+Scopo:      Mostrare lista dei prodotti nel catalogo
+Parametri:  nessuno
+Risposta:   JSON con la lista di prodotti (chiave univoca, nome e descrizione)
+Esempio:    [{"codice":"3ed2134a-3432-34244242-EFFF", "nome":"Televisione", "descrizione":"Samsung 32 pollici", ... }, ... ]
+Verbo:      GET
+------------------------------------------------------------
+
+
+API Name:   /prodotto/aggiorna
+VERSIONE:   1.0
+Scopo:      Aggiorna i dati di un prodotto nel catalogo
+Parametri:  JSON: Dati del prodotto:
+                chiave, S(50) -> chiave del prodotto da modificare
+                nome, S(50)
+                descrizione, S(255)
+                prezzo, N(6,2)
+                marca, S(50)
+                categoria, S(50)
+                disponibilita, B  (true o false)
+Esempio:    {"chiave":"3ed2134a-3432-34244242-EFFF", "nome":"Televisione Samsung",... ... ...}
+Risposta:   Chiave univoca del prodotto modificato in formato JSON con nome e descrizione
+            oppure il codice di errore per operazione non riuscita ed un messaggio
+Esempio:    {"codice":"3ed2134a-3432-34244242-EFFF", "nome":"Televisione", "descrizione":"Samsung 32 pollici", 
+            "messaggio": "OK" se tutto è a posto, | "FAIL" se errore in aggiornamento}
+Verbo:      PUT
+
+------------------------------------------------------------
+
+API Name:   /prodotto/elimina
+VERSIONE:   1.0
+Scopo:      Elimina un prodotto dal catalogo
+Parametri:  JSON: chiave univoca del prodotto da eliminare
+Esempio:    {"chiave":"3ed2134a-3432-34244242-EFFF"}
+Risposta:   JSON con codice dell'operazione e messaggio di ritorno
+Esempio:    {"codice":"3ed2134a-3432-34244242-EFFF", "messaggio": "OK" se tutto è a posto, | "FAIL" se errore in eliminazione}
+Verbo:      DELETE
+
+------------------------------------------------------------
+
+
+API Name:   /ordine/crea
+VERSIONE:   1.0
+Scopo:      Crea un nuovo ordine
+Parametri:  JSON: Dati dell'ordine:
+                chiave, S(50) -> chiave univoca dell'ordine
+                user, S(50) -> chiave univoca dell'utente
+                data, D
+                totale, N(10,2)
+                listaProdotti, JSON: lista di prodotti:
+                    chiaveProdotto, S(50)
+                    quantità, N(I)
+Esempio:    {"chiave":"3ed2134a-3432-34244242-EFFF", "user":"1234567890", "data":"2021-05-31",... ... ...}
+Risposta:   Chiave univoca del nuovo ordine in formato JSON con chiave e data
+            oppure il codice di errore per operazione non riuscita ed un messaggio
+Esempio:    {"codice":"3ed2134a-3432-34244242-EFFF", "chiave":"1234567890", "data":"2021-05-31", 
+            "messaggio": "OK" se tutto è a posto, | "FAIL" se errore in creazione}
++Verbo:      POST
+------------------------------------------------------------
+
+
+API Name:   /ordine/lista
+VERSIONE:   1.0
+Scopo:      Mostrare lista di tutti gli ordini
+Parametri:  nessuno
+Risposta:   JSON con la lista di ordini (chiave univoca, chiave utente, data e totale)
+Esempio:    [{"codice":"3ed2134a-3432-34244242-EFFF", "user":"1234567890", "data":"2021-05-31", "totale":156.20}, ... ]
+Verbo:      GET
+------------------------------------------------------------
+
+
+API Name:   /ordine/dettaglio
+VERSIONE:   1.0
+Scopo:      Mostrare i dettagli di un ordine
+Parametri:  JSON: chiave univoca dell'ordine
+Esempio:    {"chiave":"3ed2134a-3432-34244242-EFFF"}
+Risposta:   JSON con i dettagli dell'ordine (chiave univoca, chiave utente, data e lista di prodotti)
+Esempio:    {"codice":"3ed2134a-3432-34244242-EFFF", "user":"1234567890", "data":"2021-05-31", 
+            "listaProdotti":[{"chiaveProdotto":"3ed2134a-3432-34244242-EFFF", "quantita":2}]}
+Verbo:      GET
+
+------------------------------------------------------------
+
+API Name:   /ordine/elimina
+VERSIONE:   1.0
+Scopo:      Elimina un ordine
+Parametri:  JSON: chiave univoca dell'ordine
+Esempio:    {"chiave":"3ed2134a-3432-34244242-EFFF"}
+Risposta:   JSON con codice dell'operazione e messaggio di ritorno
+Esempio:    {"codice":"3ed2134a-3432-34244242-EFFF", "messaggio": "OK" se tutto è a posto, | "FAIL" se errore in eliminazione}
+Verbo:      DELETE
+------------------------------------------------------------
+
+
+API Name:   /ordine/stato
+VERSIONE:   1.0
+Scopo:      Cambia lo stato di un ordine
+Parametri:  JSON: chiave univoca dell'ordine e stato (pagato o spedito)
+Esempio:    {"chiave":"3ed2134a-3432-34244242-EFFF", "stato":"pagato"}
+Risposta:   JSON con codice dell'operazione e messaggio di ritorno
+Esempio:    {"codice":"3ed2134a-3432-34244242-EFFF", "messaggio": "OK" se tutto è a posto, | "FAIL" se errore in aggiornamento}
+Verbo:      PUT
+------------------------------------------------------------
