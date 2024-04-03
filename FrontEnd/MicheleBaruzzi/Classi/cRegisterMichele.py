@@ -84,7 +84,7 @@ class cRegistrazione():
                 dati['password'] = password
                 dati['eta'] = eta
                 dati['sesso'] = sesso
-                dati['codicefiscale'] = codice_fiscale
+                dati['cfiscale'] = codice_fiscale
                 dati['nazionalita'] = nazionalita
                 dati['indirizzo'] = indirizzo
                 
