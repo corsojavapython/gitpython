@@ -11,6 +11,25 @@ import os
 ecommerce = Flask(__name__)
 
 db = database()
+utentiLogin = []
+
+def VerifyLogin(user,password):
+
+    login = False
+
+    for u in utentiLogin:
+        if (u.UserName == user) and \
+           (u.Password == password):
+
+            if u.Status == 'OK':
+                login = True
+                break
+    if login:
+        retMsg = 'LOGIN'
+    else:
+        retMsg = 'LOGOUT'
+
+    return retMsg
 
 @ecommerce.route('/registrazione' , methods = ['PUT'])
 def register():
@@ -243,7 +262,19 @@ def DoLogin():
         pass
 
     ret = jsonify(u.dizUtente())
+    # dobbiamo dichiarare che l'utente scelto èù
+    # disponibile per le operazioni.
+
+    if VerifyLogin(u.UserName, u.Password):
+        #Uente ha già fatto il login
+        print(u.Status)
+    else: 
+        print('Non ha fatto il login')   
+        if (u.Status == 'OK'):
+            utentiLogin.append(u)
+    
     return ret, codice
+
 
 if (__name__) == '__main__':
 
