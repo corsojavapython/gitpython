@@ -3,7 +3,7 @@
 import PySimpleGUI as sg
 from flask import jsonify
 import json
-from Classi.cFrontEndMichele import cLogin
+from Classi.cFrontEnd import cLogin
 from Classi.cRegisterMichele import cRegistrazione
 import requests
 

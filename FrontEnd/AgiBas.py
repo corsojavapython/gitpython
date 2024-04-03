@@ -4,10 +4,12 @@ import PySimpleGUI as sg
 from flask import jsonify
 import json
 from Classi.cFrontEnd import cLogin
+from Classi.cRegisterMichele import cRegistrazione
 
 import requests
 
 l = cLogin('192.168.10.35')
+r = cRegistrazione()
 
 if l.EseguiLogin():
     #Login Eseguito
@@ -18,6 +20,5 @@ else:
     #login non effettuato, verifico cosa vale NeedRegister
     if l.NeedRegister:
         #devo registrarmi
-        print('DEVO REGISTRARMI')
-        pass
+        r.EseguiRegistrazione('192.168.10.35')
 
