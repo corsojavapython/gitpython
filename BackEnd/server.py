@@ -62,10 +62,33 @@ def register():
 
         retCode = 500
         chiave = 'null'
+        u.UserName = 'null'
+        u.Password = 'null'
+        u.Status = 'FAIL'
 
     finally:
 
-        return chiave, retCode
+        # DEVO Comporre la risosta in formato JSON come da
+        #Documentazione
+
+        '''
+        Risposta:   Chiave univoca del nuovo utente in formato JSON con user e password
+                    Ed il codice di errore per operazione non riuscita ed un messaggio
+        Esempio:    {"codice":"3ed2134a-3432-34244242-EFFF", "utente":"ppp", "password":"rrr", 
+                    "messaggio": "OK" se tutto è a posto, | "FAIL" se errore in regisrazione}
+        
+        
+        
+        '''
+        datiRet = {}
+        datiRet['chiave'] = chiave
+        datiRet['utente'] = u.UserName
+        datiRet['password'] = u.Password
+        datiRet['loginstatus'] = u.Status
+
+        datiJson = json.dumps(datiRet)
+
+        return datiJson, retCode
 
 
 

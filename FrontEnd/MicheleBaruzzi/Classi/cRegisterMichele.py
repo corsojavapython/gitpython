@@ -95,6 +95,8 @@ class cRegistrazione():
 
                 datiRet = json.loads(payload)
 
+                print(datiRet)
+
                 break
 
         window.close()

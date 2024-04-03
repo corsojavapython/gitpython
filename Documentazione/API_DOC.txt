@@ -30,7 +30,7 @@ Verbo:      PUT
 
 ------------------------------------------------------------
 API Name:   /registrazione
-VERSIONE    1.0
+VERSIONE    1.1
 Scopo:      Registrare un nuovo utente nel DB consinsiderandolo come status di
             login = FAIL
 Parametri:  JSON: Tutti i dati di registrazione:
@@ -45,7 +45,7 @@ Parametri:  JSON: Tutti i dati di registrazione:
                 indirizzo
 Esempio:    {"nome":"Enrico", "cognome":"Terzolo",... ... ... }
 Risposta:   Chiave univoca del nuovo utente in formato JSON con user e password
-            oppure il codice di errore per operazione non riuscita ed un messaggio
+            Ed il codice di errore per operazione non riuscita ed un messaggio
 Esempio:    {"codice":"3ed2134a-3432-34244242-EFFF", "utente":"ppp", "password":"rrr", 
-            "messaggio": "OK" se tutto è a posto, | "FAIL" se errore in regisrazione}
+            "loginstatus": "FAIL"} perchè un nuovo registrato sicuramente non ha fatto il login
 Verbo:      PUT
