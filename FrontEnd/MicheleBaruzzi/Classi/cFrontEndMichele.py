@@ -121,8 +121,94 @@ class cLogin():
             if (ev == 'OK') or (ev == sg.WIN_CLOSED):
                 #chiudo la finestra
                 break
+    
+    
+    
+    def DashBoard(self):
+        layout = [
+            [sg.Text('Benvenuto', size=(20,1)), sg.Text(self.LoginData['Nome'], size=(20,1)),sg.Text(self.LoginData['Cognome'], size=(20,1))],
+            [sg.Text('CREDITO: +CREDITO UTENTE'), sg.Button('Ricarica'), sg.Button('Area Personale'), sg.Button('Logout')],
+
+            # Definizione del layout
+
+            [sg.Column([
+                [sg.Text('Categoria',size=(8,2)), sg.Input(key="categoria")],
+                [sg.Text('Nome Prodotto',size=(8,2)), sg.Input(key="nome_prodotto")],
+                [sg.Text('Descrizione',size=(8,2)), sg.Input(key="descrizione")],
+                [sg.Text('Prezzo',size=(8,2)), sg.Input(key="Prezzo")],
+                [sg.Text('Foto',size=(8,2)), sg.Input(key="foto")],
+                [sg.Button('Metti in Vendita')],
+                [sg.Input(key="cerca"), sg.Button('Cerca')]
+            ], size=(400, 600)),  # Prima colonna
+
+            sg.Column([
+                [sg.Frame('Ultimi Oggetti Messi in Vendita', [
+                    [sg.Listbox(values=[], size=(80, 30), key='oggetti_venduti')]
+                ])]
+            ], size=(400, 600)),  # Seconda colonna
+
+            sg.Column([
+                [sg.Frame('Ultimi Oggetti comprati', [
+                    [sg.Listbox(values=[], size=(80, 30), key='oggetti_comprati')]
+                ])]
+                # Qui puoi aggiungere altri elementi per la terza colonna
+            ], size=(400, 600))]  # Terza colonna
+        ]
+
+        window = sg.Window('E-commerce Dashboard', layout)
+
+        while True:
+            event, values = window.read()
+
+            if event == sg.WINDOW_CLOSED:
+                break
+            elif event == 'Area Personale':
+                self.needDati = True
+                ritorno = False
+                break
+                
+
+            elif event == 'Logout':
+                self.needLogOut = True
+                ritorno = False
+                break
+                # Inserisci qui il codice per effettuare il logout effettivo dall'applicazione
+            elif event == 'Metti in Vendita':
+                sg.popup('Hai cliccato su Metti in Vendita.')
+            elif event == 'Cerca':
+                sg.popup('Hai cliccato su Cerca.')
+            elif event == 'Ultimi Oggetti':
+                # Simuliamo una lista di oggetti
+                items = ['Oggetto 1', 'Oggetto 2', 'Oggetto 3', 'Oggetto 4', 'Oggetto 5']
+                # Aggiorniamo la lista nella GUI
+                window['oggetti_venduti'].update(values=items)
+
+    def Logout(self):
+        layout = [
+            [sg.Text('ci vediamo presto', size=(20,1)), sg.Text(self.LoginData['Nome'], size=(20,1))],
+            [sg.Button('LogOut'),sg.Button('annulla'),]
 
 
+        ]
 
+        w = sg.Window('Login E-Commerce', layout)
+
+        while True:
+
+            ev, va = w.Read()
+        
+            if ev == 'Annulla' or ev == sg.WIN_CLOSED:
+                break
+
+            elif ev == 'Logout':
+                u = self.LoginData['utente']
+                p = self.LoginData['password']
+                
+                dati = {}
+                dati['utente'] = u 
+                dati['password'] = p
+
+            risposta = requests.post(f'http://{backend}/logout', json = dati)
+                
 
 

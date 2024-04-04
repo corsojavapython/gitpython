@@ -3,22 +3,29 @@
 import PySimpleGUI as sg
 from flask import jsonify
 import json
-from Classi.cFrontEnd import cLogin
-from Classi.cRegisterMichele import cRegistrazione
+from Classi.cFrontEndMichele import cLogin
+from Classi.cRegisterMichele1 import registrati
 import requests
 
 l = cLogin('192.168.10.35')
-r = cRegistrazione()
+r = registrati()
 
 if l.EseguiLogin():
     #Login Eseguito
     #Faccio Vedere i dati
-    l.ShowLoginData()
+    l.DashBoard()
+
+    if l.needLogOut:
+        l.Logout()
+
+    elif l.needDati:
+        l.LoginData()
+
 
 else:
     if l.NeedRegister:
         #devo registrarmi
-        r.EseguiRegistrazione('192.168.10.35')
+        r.registrazione('192.168.10.35')
     pass
 
 
