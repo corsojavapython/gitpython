@@ -49,3 +49,70 @@ Risposta:   Chiave univoca del nuovo utente in formato JSON con user e password
 Esempio:    {"codice":"3ed2134a-3432-34244242-EFFF", "utente":"ppp", "password":"rrr", 
             "loginstatus": "FAIL"} perchè un nuovo registrato sicuramente non ha fatto il login
 Verbo:      PUT
+------------------------------------------------------------
+API Name:   /wallet
+VERSIONE:   1.0
+Scopo:      Ottenere i dati relativi a tutti i wallet opzionalmente
+            filtrati per propietario (per utente)
+Parametri:  o nessuno (tutti i wallet) oppure in formato JSON:
+            {"propietario":"chiave del propietario"}
+Esempio:    {"propietario":"abfca-244452345-42341231-dffa"}
+Risposta:   dati del o dei wallet in JSON
+Esempio:    {"idwallet":"1", "propietario":"abfca-244452345-42341231-dffa",
+            "saldo":"453.89", "descrizione":"wallet principale"}
+oppure:     {"wallet_1":{"idwallet":"1", "propietario":"abfca-244452345-42341231-dffa",
+            "saldo":"453.89", "descrizione":"wallet principale"},
+            "wallet_2":{"idwallet":"2", "propietario":"abfcf-234152345-42341231-dffa",
+            "saldo":"2313.50", "descrizione":"wallet principale"}}
+Verbo:      GET
+-----------------------------------------------------------------            
+API Name:   /wallet/insert
+VERSIONE 1.0
+Scopo:      Inserisce un nuovo wallet per un utente
+Parametri:  JSON con i dati del nuovo wallet:
+                propietario,
+                descrizione
+Esempio:    {"propietario":"fdcaa:23441243-23413-abbce", 
+            "descrizione":"Wallet per acquisti"}
+Risposta:   JSON che dica l'esito: OK, FAIL
+Esempio:    {"esito":"OK"} 
+Verbo:      PUT           
+-----------------------------------------------------------------
+API Name:   /wallet/mov
+VESIONE:    1.0
+Scopo:      recuperare i movimenti di un wallet
+Parametri:  ID del wallet di ineresse:
+Esempio:    {"walletid":"1"}
+Risposta:    Elenco movimenti del wallet
+Esempio:    {"movimento_1:{"data":"04-04-2024 16:32:45.000",
+             "idmovimento":"1",
+             "idwallet":"1",
+             "importo":"-342,25",
+             "idtransazione","fadea-424312431-2342412-ffcde",
+             "descrizione":"comperato vaso di fiori"
+            },
+            {"movimento_43":{"data":"04-04-2024 16:44:25.000",
+             "idmovimento":"43",
+             "idwallet":"1",
+             "importo":"122,25",
+             "idtransazione","faaea-424312431-1122412-aacde",
+             "descrizione":"venduto fucile"}
+            }}
+Verbo:      GET
+----------------------------------------------------------------
+API Name:   /wallet/mov
+VERSIONE:   1.0
+Scopo:      Inserire i dati relativi ad un movimento
+            su un particolare wallet
+Parametri:  formato JSON:
+                wallet,
+                importo,
+                data,
+                descrizione
+Esempio:    {"wallet":"24", 
+            "importo":"431,12",
+            "data":"04-04-2024 17:01:22",
+            "descrizione":"vendita scarpe"}
+Risposta:   JSON Con esito operazione: 'OK' o 'FAIL'
+Esempio:    {"esito":"OK"}
+Verbo:      PUT
