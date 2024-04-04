@@ -2,6 +2,7 @@ from flask import Flask,request, jsonify
 
 from Classi.cDataBase import database
 from Classi.cUtenti import utente
+from Classi.cWallet import wallet
 
 import json
 import uuid
@@ -108,11 +109,6 @@ def register():
         datiJson = json.dumps(datiRet)
 
         return datiJson, retCode
-
-
-
-
-
 
 @ecommerce.route('/init', methods = ['PUT'])
 def init():
@@ -274,6 +270,32 @@ def DoLogin():
             utentiLogin.append(u)
     
     return ret, codice
+
+@ecommerce.route('/wallet', methods = ['GET'])
+def getWallets():  
+    pass
+
+@ecommerce.route('/wallet/insert', methods = ['PUT'])
+def InsertWallet():
+
+    dati = request.json
+
+    proprietario = dati['proprietario']
+    
+    descrizione = dati['descrizione']
+
+    w = wallet(proprietario,descrizione, db)
+    
+    w.Generate()
+    
+
+    pass
+
+@ecommerce.route('/wallet/mov', methods = ['GET', 'PUT'])
+def InsertMovement():
+    pass
+
+
 
 
 if (__name__) == '__main__':
