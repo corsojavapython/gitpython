@@ -7,11 +7,13 @@ class wallet:
 
     def __init__(self, proprietario, d, db:database ):
 
+        '''
+
         self.proprietario = proprietario
         self.saldo = 0.0
         self.descrizione = d
         self.Connection = db.Con
-
+        '''
     def Generate(self):
         # scrive nel DataBase un nuovo wallet
 
@@ -23,7 +25,7 @@ class wallet:
             
                 Values(%s, %s, %s)
 
-           """     
+           """    
 
         parametri = (self.proprietario,
                     self.saldo,
